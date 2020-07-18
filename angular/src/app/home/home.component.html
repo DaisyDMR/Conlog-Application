@@ -1,0 +1,87 @@
+<div [@routerTransition]>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h1>{{ "HomePage" | localize }}</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-primary">
+                        <div class="inner">
+                            <h3>{{activeCount.total}}</h3>
+                            <p>Open Tasks</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <h1>{{ "TodoItems" | localize }}</h1>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="text" class="form-control" [(ngModel)]="newTask.description">
+                                </div>
+                                <div class="col-6 text-right">
+                                    <a href="javascript:;" (click)="addTask()" class="btn bg-blue">
+                                        <i class="fa fa-plus-square"></i>
+                                        {{ "Create" | localize }}
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Open Tasks</h3>
+                        </div>
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th class="w-25">Description</th>
+                                        <th>Date Created</th>
+                                        <th>Assigned To</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let task of activeTasks.tasks">
+                                        <td>{{task.id}}</td>
+                                        <td>{{task.description}}</td>
+                                        <td>{{task.creationTime|date:'yyyy-MM-dd'}}</td>
+                                        <td>{{task.assignedPersonName}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm bg-secondary" (click)="markComplete(task)">
+                                                <i class="fas fa-check"></i>
+                                                {{ "Complete" | localize }}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
